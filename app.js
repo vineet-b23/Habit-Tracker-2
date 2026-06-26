@@ -16,26 +16,26 @@ const ARCHIVE_AFTER_DAYS = 90;
 const DELETE_PHRASE = 'I am choosing comfort over discipline';
 
 const STOIC_QUOTES = [
-  { text: "You have power over your mind, not outside events. Realize this, and you will find strength.", author: "Marcus Aurelius" },
-  { text: "The impediment to action advances action. What stands in the way becomes the way.", author: "Marcus Aurelius" },
-  { text: "Waste no more time arguing about what a good man should be. Be one.", author: "Marcus Aurelius" },
-  { text: "Accept the things to which fate binds you, and love the people with whom fate brings you together.", author: "Marcus Aurelius" },
-  { text: "If it is not right, do not do it; if it is not true, do not say it.", author: "Marcus Aurelius" },
-  { text: "Very little is needed to make a happy life; it is all within yourself, in your way of thinking.", author: "Marcus Aurelius" },
-  { text: "The first rule is to keep an untroubled spirit. The second is to look things in the face and know them for what they are.", author: "Marcus Aurelius" },
-  { text: "Do not indulge in expectations across long stretches of time. Of every advantage of opportunity, ask: what is this?", author: "Marcus Aurelius" },
-  { text: "Make the best use of what is in your power, and take the rest as it happens.", author: "Epictetus" },
-  { text: "He is a wise man who does not grieve for the things which he has not, but rejoices for those which he has.", author: "Epictetus" },
-  { text: "No man is free who is not master of himself.", author: "Epictetus" },
-  { text: "Seek not the good in external things; seek it in yourself.", author: "Epictetus" },
-  { text: "It's not what happens to you, but how you react to it that matters.", author: "Epictetus" },
-  { text: "Wealth consists not in having great possessions, but in having few wants.", author: "Epictetus" },
-  { text: "First say to yourself what you would be; and then do what you have to do.", author: "Epictetus" },
-  { text: "Omnia aliena sunt, tempus tantum nostrum est. All things are alien; time alone is ours.", author: "Seneca" },
-  { text: "Nusquam est qui ubique est. One who is everywhere is nowhere.", author: "Seneca" },
-  { text: "While we are postponing, life speeds by.", author: "Seneca" },
-  { text: "It is not that I am brave, but that I know what is worth fearing.", author: "Seneca" },
-  { text: "Dum differtur vita transcurrit. Luck is what happens when preparation meets opportunity.", author: "Seneca" }
+  { text: "The hand of the diligent will rule, while the slothful will be put to forced labor.", author: "Proverbs 12:24" },
+  { text: "Whatever you do, work heartily, as for the Lord and not for men.", author: "Colossians 3:23" },
+  { text: "For God gave us a spirit not of fear but of power and love and self-control.", author: "2 Timothy 1:7" },
+  { text: "The soul of the sluggard craves and gets nothing, while the soul of the diligent is richly supplied.", author: "Proverbs 13:4" },
+  { text: "He who ignores discipline despises himself, but whoever heeds correction gains understanding.", author: "Proverbs 15:32" },
+  { text: "Do you not know that your bodies are temples of the Holy Spirit, whom you have from God?", author: "1 Corinthians 6:19" },
+  { text: "Look carefully then how you walk, not as unwise but as wise, making the best use of the time.", author: "Ephesians 5:15-16" },
+  { text: "Moreover, it is required of stewards that they be found faithful.", author: "1 Corinthians 4:2" },
+  { text: "Do not be conformed to this world, but be transformed by the renewal of your mind.", author: "Romans 12:2" },
+  { text: "In all toil there is profit, but mere talk tends only to poverty.", author: "Proverbs 14:23" },
+  { text: "For this very reason, make every effort to supplement your faith with virtue, and virtue with knowledge.", author: "2 Peter 1:5" },
+  { text: "A man without self-control is like a city broken into and left without walls.", author: "Proverbs 25:28" },
+  { text: "Be watchful, stand firm in the faith, act like men, be strong.", author: "1 Corinthians 16:13" },
+  { text: "He who is faithful in a very little is also faithful in much.", author: "Luke 16:10" },
+  { text: "Let us not grow weary of doing good, for in due season we will reap, if we do not give up.", author: "Galatians 6:9" },
+  { text: "An unexamined life is a missed opportunity for stewardship.", author: "Augustine of Hippo" },
+  { text: "God does not demand that we succeed, he only requires that we try.", author: "Mother Teresa" },
+  { text: "He who has no absolute master over his self will soon find a tyrant in his passions.", author: "John Chrysostom" },
+  { text: "Idleness is the enemy of the soul.", author: "Benedict of Nursia" },
+  { text: "True Christian commitment leaves no room for half-hearted efforts.", author: "Polycarp" }
 ];
 
 // ── Storage Engine ──
@@ -267,8 +267,7 @@ function recomputeAndSaveStreak(habit) {
   // Award Mend Token at each MEND_TOKEN_MILESTONE milestone, max MAX_MEND_TOKENS
   if (streak > 0 && streak % MEND_TOKEN_MILESTONE === 0 && habit.mendTokens < MAX_MEND_TOKENS) {
     habit.mendTokens = Math.min(MAX_MEND_TOKENS, habit.mendTokens + 1);
-    showToast(`🪢 Mend Token earned on "${habit.name}"!`);
-  }
+    showToast(`🪢 Grace Token earned on "${habit.name}"!`);  }
 }
 
 // ── XP Engine ──
@@ -353,8 +352,8 @@ function checkShadowRollover() {
   const perHabit = Math.floor(totalCap / shadowHabits.length);
   const totalAward = perHabit * surviving.length;
   if (totalAward > 0) {
-    addXP(totalAward);
-    showToast(`🌑 Shadow resilience: +${totalAward} XP`);
+      addXP(totalAward);
+      showToast(`🌑 Resilience reward: +${totalAward} XP`);
   }
 }
 
@@ -371,14 +370,14 @@ function toggleHabit(habitId) {
       if (!state.completions[habitId]) state.completions[habitId] = {};
       delete state.completions[habitId][today];
       addXP(5); // refund
-      showToast(`🌑 Shadow restored.`);
+      showToast(`🌑 Resistance restored.`);
     } else {
       // Break shadow
       if (!state.completions[habitId]) state.completions[habitId] = {};
       state.completions[habitId][today] = true;
       addXP(XP_SHADOW_BREAK);
       playClickSound();
-      showToast(`⚠ Shadow broken. ${XP_SHADOW_BREAK} XP.`);
+      showToast(`⚠ Resistance broken. ${XP_SHADOW_BREAK} XP.`);
     }
     saveState();
     renderAll();
@@ -427,7 +426,7 @@ function toggleHabit(habitId) {
       habit.currentStreak = 0;
       habit.isFractured = false;
       saveState();
-      showToast(`💔 Streak lost on "${habit.name}". No tokens remain.`);
+      showToast(`💔 Commitment interrupted on "${habit.name}". No grace tokens remain.`);
       doCheckIn(habit, today);
     }
     return;
@@ -455,8 +454,7 @@ function openMendModal(habitId) {
   mendingHabitId = habitId;
   const habit = state.habits.find(h => h.id === habitId);
   const body = document.getElementById('mend-modal-body');
-  if (body) body.textContent = `"${habit.name}" streak is fractured. Spend 1 Mend Token to stitch the gap (${habit.mendTokens} available) or accept a reset to Day 1.`;
-  openModal('mend-modal');
+  if (body) body.textContent = `"${habit.name}" commitment is interrupted. Apply 1 Grace Token to stitch the gap (${habit.mendTokens} available) or accept a reset to Day 1.`;  openModal('mend-modal');
 }
 
 function spendMendToken(habitId) {
@@ -471,7 +469,7 @@ function spendMendToken(habitId) {
   recomputeAndSaveStreak(habit);
   recomputePerfectDays();
   saveState();
-  showToast(`🪢 Streak mended! "${habit.name}"`);
+  showToast(`🪢 Path restored! "${habit.name}"`);
   closeModal('mend-modal');
   // Now do the actual check-in
   doCheckIn(habit, trackingDate());
@@ -491,7 +489,7 @@ function acceptStreakReset(habitId) {
 // ── CRUD ──
 function openAddModal() {
   editingHabitId = null;
-  document.getElementById('modal-title').textContent = 'New Ritual';
+  document.getElementById('modal-title').textContent = 'New Discipline';
   document.getElementById('habit-name').value = '';
   clearRadioGroup('pillar');
   clearRadioGroup('bracket');
@@ -507,7 +505,7 @@ function openEditModal(habitId) {
   const habit = state.habits.find(h => h.id === habitId);
   if (!habit) return;
   editingHabitId = habitId;
-  document.getElementById('modal-title').textContent = 'Edit Ritual';
+  document.getElementById('modal-title').textContent = 'Edit Discipline';
   document.getElementById('habit-name').value = habit.name;
   setRadioValue('pillar', habit.pillar);
   setRadioValue('bracket', habit.bracket);
@@ -559,7 +557,7 @@ function saveHabit() {
   saveState();
   closeModal('habit-modal');
   renderAll();
-  showToast(editingHabitId ? 'Ritual updated.' : 'New ritual added. Begin.');
+  showToast(editingHabitId ? 'Discipline updated.' : 'New discipline added. Begin.');
 }
 
 function openDeleteModal(habitId) {
@@ -585,7 +583,7 @@ function confirmDelete() {
   saveState();
   closeModal('delete-modal');
   renderAll();
-  showToast('Ritual removed.');
+  showToast('Commitment removed.');
   deletingHabitId = null;
 }
 
@@ -702,7 +700,7 @@ function cycleTheme() {
   saveState();
 }
 
-// ── Oracle Greeting ──
+//oracle greeting 
 function getOracleGreeting() {
   const today = trackingDate();
   const totalStandard = state.habits.filter(h => h.type === 'standard').length;
@@ -710,10 +708,10 @@ function getOracleGreeting() {
   const rate = totalStandard > 0 ? Math.round((completedToday / totalStandard) * 100) : 0;
   const h = new Date().getHours();
   let time = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-  if (totalStandard === 0) return `${time}. Add your first ritual to begin the practice.`;
-  if (rate === 100) return `${time}. A perfect record today. The stone is set.`;
+  if (totalStandard === 0) return `${time}. Add your first commitment to begin your daily stewardship.`;
+  if (rate === 100) return `${time}. A complete record today. The foundation is firmly set.`;
   if (rate >= 60) return `${time}. Momentum is building — ${rate}% complete.`;
-  if (rate > 0) return `${time}. ${completedToday} of ${totalStandard} done. The work continues.`;
+  if (rate > 0) return `${time}. ${completedToday} of ${totalStandard} steps fulfilled. The work continues.`;
   return `${time}. A new day. Begin where you stand.`;
 }
 
@@ -836,11 +834,11 @@ function buildHabitCard(habit) {
     streak.textContent = `🔥 ${habit.currentStreak}d`;
     meta.appendChild(streak);
 
-    // Mend tokens
+    // Grace / Mend tokens
     if (habit.mendTokens > 0 || habit.currentStreak >= MEND_TOKEN_MILESTONE) {
       const mend = document.createElement('div');
       mend.className = 'mend-tokens';
-      mend.setAttribute('title', `${habit.mendTokens} Mend Token(s)`);
+      mend.setAttribute('title', `${habit.mendTokens} Grace Token(s)`);
       for (let i = 0; i < MAX_MEND_TOKENS; i++) {
         const dot = document.createElement('div');
         dot.className = 'mend-dot' + (i < habit.mendTokens ? ' filled' : '');
@@ -857,15 +855,15 @@ function buildHabitCard(habit) {
 
   if (habit.type === 'shadow') {
     btn.className = `check-btn ${shadowBroken ? 'shadow-broken' : 'shadow-intact'}`;
-    btn.textContent = shadowBroken ? '⚠ Vice broken today' : '✦ Holding strong';
+    btn.textContent = shadowBroken ? '⚠ Resistance broken today' : '✦ Holding strong';
     btn.setAttribute('aria-pressed', String(!!shadowBroken));
     btn.addEventListener('click', () => toggleHabit(habit.id));
-    btn.setAttribute('aria-label', shadowBroken ? 'Undo — mark shadow intact' : 'Mark vice as broken (costs 5 XP)');
+    btn.setAttribute('aria-label', shadowBroken ? 'Undo — mark resistance intact' : 'Mark resistance as broken (costs 5 XP)');
   } else {
     btn.className = `check-btn${done ? ' checked' : ''}`;
-    btn.textContent = done ? habit.name : 'Mark complete';
+    btn.textContent = done ? habit.name : 'Mark fulfilled';
     btn.setAttribute('aria-pressed', String(!!done));
-    btn.setAttribute('aria-label', done ? `Uncheck ${habit.name}` : `Complete ${habit.name}`);
+    btn.setAttribute('aria-label', done ? `Uncheck ${habit.name}` : `Fulfill ${habit.name}`);
     btn.addEventListener('click', () => {
       const c = document.querySelector(`[data-id="${habit.id}"]`);
       if (c) { c.classList.add('card-checked'); setTimeout(() => c.classList.remove('card-checked'), 500); }
@@ -887,7 +885,7 @@ function buildHabitCard(habit) {
     if (habit.isFractured) {
       const fl = document.createElement('span');
       fl.className = 'fractured-label';
-      fl.textContent = habit.mendTokens > 0 ? '💔 Fractured — use token?' : '💔 Fractured';
+      fl.textContent = habit.mendTokens > 0 ? '💔 Interrupted — apply grace token?' : '💔 Interrupted';
       footer.appendChild(fl);
     }
   }
@@ -972,7 +970,7 @@ function updateXPBar() {
   const levelEl = document.getElementById('level-label');
   const xpEl = document.getElementById('xp-label');
   const fill = document.getElementById('xp-fill');
-  if (levelEl) levelEl.textContent = `Level ${state.profile.level}`;
+  if (levelEl) levelEl.textContent = `Growth Tier ${state.profile.level}`;
   if (xpEl) xpEl.textContent = `${state.profile.xp} / ${XP_PER_LEVEL} XP`;
   if (fill) fill.style.width = `${Math.min(100, (state.profile.xp / XP_PER_LEVEL) * 100)}%`;
 }

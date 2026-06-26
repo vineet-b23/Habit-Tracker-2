@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aeterna — Discipline, Embodied</title>
+  <title>Aeterna — Faithful Stewardship Daily</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -20,7 +20,7 @@
   <!-- App Shell -->
   <div id="app" class="max-w-5xl mx-auto px-4 pb-16">
 
-    <!-- Oracle Banner -->
+    <!-- Daily Banner -->
     <header class="oracle-banner pt-8 pb-6 mb-2">
       <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
@@ -30,7 +30,7 @@
         <div class="flex flex-col items-start sm:items-end gap-1">
           <div id="xp-bar-wrapper" class="xp-bar-wrapper">
             <div class="flex items-center justify-between mb-1">
-              <span id="level-label" class="stat-label text-xs font-semibold tracking-widest uppercase">Level 1</span>
+              <span id="level-label" class="stat-label text-xs font-semibold tracking-widest uppercase">Growth Tier 1</span>
               <span id="xp-label" class="stat-label text-xs">0 / 100 XP</span>
             </div>
             <div class="xp-track">
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <!-- Stoic Quote -->
+      <!-- Scripture / Encouragement Quote -->
       <div class="stoic-quote-box mt-5">
         <blockquote id="stoic-quote" class="stoic-quote italic text-sm"></blockquote>
         <cite id="stoic-author" class="stoic-author text-xs mt-1 block not-italic font-medium tracking-wide"></cite>
@@ -53,19 +53,19 @@
       <div class="stats-row mt-5 flex flex-wrap gap-4">
         <div class="stat-chip">
           <span class="stat-num" id="stat-completed">0</span>
-          <span class="stat-label">completed</span>
+          <span class="stat-label">fulfilled</span>
         </div>
         <div class="stat-chip">
           <span class="stat-num" id="stat-total">0</span>
-          <span class="stat-label">active habits</span>
+          <span class="stat-label">disciplines</span>
         </div>
         <div class="stat-chip">
           <span class="stat-num" id="stat-rate">0%</span>
-          <span class="stat-label">today's rate</span>
+          <span class="stat-label">today's path</span>
         </div>
         <div class="stat-chip">
           <span class="stat-num" id="stat-perfect">0</span>
-          <span class="stat-label">perfect days</span>
+          <span class="stat-label">unbroken days</span>
         </div>
       </div>
     </header>
@@ -76,16 +76,16 @@
       <button class="bracket-btn" data-bracket="Dawn" aria-pressed="false">🌅 Dawn</button>
       <button class="bracket-btn" data-bracket="Noon" aria-pressed="false">☀ Noon</button>
       <button class="bracket-btn" data-bracket="Dusk" aria-pressed="false">🌙 Dusk</button>
-      <button class="bracket-btn" data-bracket="shadow" aria-pressed="false">🌑 Shadow</button>
+      <button class="bracket-btn" data-bracket="shadow" aria-pressed="false">🌑 Resistances</button>
     </nav>
 
-    <!-- Pillar Sections -->
+    <!-- Foundation Sections -->
     <main id="habits-container">
       <section class="pillar-section mb-8" id="pillar-Mind">
         <div class="pillar-header flex items-center gap-3 mb-4">
           <span class="pillar-icon">🧠</span>
           <h2 class="pillar-title">Mind</h2>
-          <span class="combo-badge hidden" id="combo-Mind">⚡ Flow State</span>
+          <span class="combo-badge hidden" id="combo-Mind">⚡ Diligent Focus</span>
         </div>
         <div class="habits-grid" id="grid-Mind"></div>
       </section>
@@ -93,7 +93,7 @@
         <div class="pillar-header flex items-center gap-3 mb-4">
           <span class="pillar-icon">💪</span>
           <h2 class="pillar-title">Body</h2>
-          <span class="combo-badge hidden" id="combo-Body">⚡ Flow State</span>
+          <span class="combo-badge hidden" id="combo-Body">⚡ Diligent Focus</span>
         </div>
         <div class="habits-grid" id="grid-Body"></div>
       </section>
@@ -101,41 +101,41 @@
         <div class="pillar-header flex items-center gap-3 mb-4">
           <span class="pillar-icon">⚒</span>
           <h2 class="pillar-title">Craft</h2>
-          <span class="combo-badge hidden" id="combo-Craft">⚡ Flow State</span>
+          <span class="combo-badge hidden" id="combo-Craft">⚡ Diligent Focus</span>
         </div>
         <div class="habits-grid" id="grid-Craft"></div>
       </section>
       <section class="pillar-section mb-8" id="pillar-Shadow">
         <div class="pillar-header flex items-center gap-3 mb-4">
           <span class="pillar-icon">🌑</span>
-          <h2 class="pillar-title">Shadow Rituals</h2>
+          <h2 class="pillar-title">Daily Resistances</h2>
         </div>
         <div class="habits-grid" id="grid-Shadow"></div>
       </section>
 
       <!-- Empty State -->
       <div id="empty-state" class="empty-state hidden text-center py-20">
-        <p class="text-5xl mb-4">📿</p>
-        <h3 class="empty-title text-2xl mb-2">No habits yet</h3>
-        <p class="empty-sub text-sm">Begin your first ritual below.</p>
+        <p class="text-5xl mb-4">📜</p>
+        <h3 class="empty-title text-2xl mb-2">No active commitments</h3>
+        <p class="empty-sub text-sm">Begin your first daily stewardship below.</p>
       </div>
     </main>
 
     <!-- Add Habit FAB -->
-    <button id="add-habit-btn" class="add-fab" aria-label="Add new habit">
-      + New Ritual
+    <button id="add-habit-btn" class="add-fab" aria-label="Add new discipline">
+      + New Discipline
     </button>
 
-    <!-- Stoic Monolith / Calendar Section -->
+    <!-- The Citadel / Calendar Section -->
     <section class="monolith-section mt-12">
-      <h2 class="section-title mb-4">The Monolith</h2>
-      <p class="section-sub mb-5 text-sm">Every perfect day is sealed in stone.</p>
-      <div id="calendar-grid" class="calendar-grid" role="grid" aria-label="Monthly habit calendar"></div>
+      <h2 class="section-title mb-4">The Citadel</h2>
+      <p class="section-sub mb-5 text-sm">Every completed day builds a firm foundation.</p>
+      <div id="calendar-grid" class="calendar-grid" role="grid" aria-label="Monthly discipline calendar"></div>
     </section>
 
     <!-- Footer / Data Portability -->
     <footer class="app-footer mt-16 pt-8 border-t flex flex-wrap gap-3 items-center justify-between">
-      <p class="footer-brand text-sm italic">Aeterna — Stoic Execution Engine</p>
+      <p class="footer-brand text-sm italic">Aeterna — Intentional Stewardship Ledger</p>
       <div class="flex flex-wrap gap-2">
         <button id="export-btn" class="footer-btn">⬇ Export Backup</button>
         <button id="import-btn" class="footer-btn">⬆ Import Backup</button>
@@ -150,21 +150,21 @@
   <div id="habit-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
     <div class="modal-box">
       <button class="modal-close" id="habit-modal-close" aria-label="Close">✕</button>
-      <h2 id="modal-title" class="modal-title text-2xl mb-6">New Ritual</h2>
+      <h2 id="modal-title" class="modal-title text-2xl mb-6">New Discipline</h2>
       <div class="modal-form">
         <div class="field-group">
-          <label class="field-label" for="habit-name">Ritual Name</label>
-          <input id="habit-name" type="text" class="field-input" placeholder="e.g. Morning Pages" maxlength="60" autocomplete="off" />
+          <label class="field-label" for="habit-name">Discipline Name</label>
+          <input id="habit-name" type="text" class="field-input" placeholder="e.g. Prayer & Reflection" maxlength="60" autocomplete="off" />
           <span class="field-error hidden" id="name-error">Name is required.</span>
         </div>
         <div class="field-group">
-          <label class="field-label">Life Pillar</label>
-          <div class="pill-group" role="radiogroup" aria-label="Life pillar">
+          <label class="field-label">Life Foundation</label>
+          <div class="pill-group" role="radiogroup" aria-label="Life foundation">
             <label class="pill-option"><input type="radio" name="pillar" value="Mind" class="sr-only" /><span>🧠 Mind</span></label>
             <label class="pill-option"><input type="radio" name="pillar" value="Body" class="sr-only" /><span>💪 Body</span></label>
             <label class="pill-option"><input type="radio" name="pillar" value="Craft" class="sr-only" /><span>⚒ Craft</span></label>
           </div>
-          <span class="field-error hidden" id="pillar-error">Select a pillar.</span>
+          <span class="field-error hidden" id="pillar-error">Select a foundation.</span>
         </div>
         <div class="field-group">
           <label class="field-label">Time Bracket</label>
@@ -176,16 +176,16 @@
           <span class="field-error hidden" id="bracket-error">Select a bracket.</span>
         </div>
         <div class="field-group">
-          <label class="field-label">Ritual Type</label>
-          <div class="pill-group" role="radiogroup" aria-label="Ritual type">
+          <label class="field-label">Commitment Type</label>
+          <div class="pill-group" role="radiogroup" aria-label="Commitment type">
             <label class="pill-option"><input type="radio" name="type" value="standard" class="sr-only" /><span>✦ Standard</span></label>
-            <label class="pill-option"><input type="radio" name="type" value="shadow" class="sr-only" /><span>🌑 Shadow</span></label>
+            <label class="pill-option"><input type="radio" name="type" value="shadow" class="sr-only" /><span>🌑 Resistance</span></label>
           </div>
           <span class="field-error hidden" id="type-error">Select a type.</span>
         </div>
         <div class="flex gap-3 mt-6 justify-end">
           <button id="habit-cancel-btn" class="btn-secondary">Cancel</button>
-          <button id="habit-save-btn" class="btn-primary">Save Ritual</button>
+          <button id="habit-save-btn" class="btn-primary">Save Discipline</button>
         </div>
       </div>
     </div>
@@ -194,7 +194,7 @@
   <!-- Delete Confirm Modal -->
   <div id="delete-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title" tabindex="-1">
     <div class="modal-box">
-      <h2 id="delete-modal-title" class="modal-title text-xl mb-3">Delete Ritual</h2>
+      <h2 id="delete-modal-title" class="modal-title text-xl mb-3">Remove Commitment</h2>
       <p class="text-sm mb-1 modal-sub">This is permanent and irreversible.</p>
       <p class="text-sm mb-5 modal-sub">Type exactly to confirm:</p>
       <p class="delete-phrase mb-4">"I am choosing comfort over discipline"</p>
@@ -202,19 +202,19 @@
       <span class="field-error hidden" id="delete-error">Phrase does not match. Please try again.</span>
       <div class="flex gap-3 mt-5 justify-end">
         <button id="delete-cancel-btn" class="btn-secondary">Keep It</button>
-        <button id="delete-confirm-btn" class="btn-danger">Delete Forever</button>
+        <button id="delete-confirm-btn" class="btn-danger">Remove Forever</button>
       </div>
     </div>
   </div>
 
-  <!-- Mend Token Modal -->
+  <!-- Grace Token Modal -->
   <div id="mend-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="mend-modal-title" tabindex="-1">
     <div class="modal-box">
-      <h2 id="mend-modal-title" class="modal-title text-xl mb-3">Streak Fractured</h2>
+      <h2 id="mend-modal-title" class="modal-title text-xl mb-3">Commitment Interrupted</h2>
       <p id="mend-modal-body" class="text-sm mb-5 modal-sub"></p>
       <div class="flex gap-3 mt-5 justify-end flex-wrap">
         <button id="mend-cancel-btn" class="btn-secondary">Accept Reset</button>
-        <button id="mend-spend-btn" class="btn-primary">Spend Token 🪢</button>
+        <button id="mend-spend-btn" class="btn-primary">Apply Grace Token 🪢</button>
       </div>
     </div>
   </div>
